@@ -1,0 +1,8 @@
+label{
+	display: inline-block;
+	width: 100px;
+}
+#page2{
+	width: 300px;
+	border: 1px solid black;
+}

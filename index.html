@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+    <html lang="sv">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+	<link rel="stylesheet" href="index.css">
+    <title>Labb1</title>
+    </head>
+    <body>
+    
+    <div id="page1">
+      <h2>Beställ ditt visitkort här:</h2>
+	  <p>
+          <label>Företag</label> <input type="text" id="foretag" />
+	  </p>
+	  <p>
+          <label>Efternamn</label> <input type="text" id="efternamn" />
+      </p>
+	  <p>
+          <label>Förnamn</label> <input type="text" id="fornamn" />
+      </p>
+	  <p>
+          <label>Titel</label> <input type="text" id="titel" />
+      </p>
+	  <p>
+          <label>Telefon</label> <input type="text" id="telefon" />
+      </p>
+	  <p>
+          <label>E-post</label> <input type="text" id="epost" />
+      </p>
+	  <p>	
+			<label>Bakgrundsfärg</label>
+			<select name="backgroundcolor" id="backgroundcolor">
+			<option value="lightblue">Ljusblå</option>
+			<option value="lightyellow">Ljusgul</option>
+			<option value="white">Vit</option>
+			<option value="turquoise">Turkos</option>
+		</select>
+      </p>
+	  <p>	
+			<label>Textfärg</label>
+			<select name="textcolor" id="textcolor">
+			<option value="black">Svart</option>
+			<option value="blue">Blå</option>
+			<option value="red">Röd</option>
+			<option value="darkgreen">Mörkgrön</option>
+		</select>
+      </p>
+	  <p>	
+			<label>Typsnitt</label>
+			<select name="typesnitt" id="typesnitt">
+			<option value="Verdana">Verdana</option>
+			<option value="Ariel">Ariel</option>
+			<option value="Tahoma">Tahoma</option>
+			<option value="Impact">Impact</option>
+		</select>
+      </p>
+	  <p>
+          <input type="button" id="reset" value="Nollställ" />
+		  <input type="button" id="print" value="Skriv Ut" />
+      </p>
+    </div>
+    
+    <div id="page2">
+      <h2 id="p2foretag">Page 2</h2>
+		<p id="p2fullName"></p>
+		<p id="p2titel"></p>
+		<br>
+		<p id="p2phone"></p>
+		<p id="p2epost"></p>
+    </div>
+	<p>
+		<input type="button" id="byt2" value="Tillbaka" />
+	</p>
+    <script>
+    
+    "use strict";
+    //
+    // Wait for DOM to load
+    document.addEventListener("DOMContentLoaded", function(){ 
+    
+        document.getElementById("page2").style.display = "none"; // Hide div with name "page2"
+		document.getElementById("byt2").style.display = "none";
+    
+        document.getElementById("print").addEventListener("click", function(){
+            document.getElementById("page1").style.display = "none"; // Hide div with name "page1"
+            document.getElementById("page2").style.display = "block"; // Show div with name "page2"
+			document.getElementById("byt2").style.display = "block";
+            // Change background color on "page2"
+            document.getElementById("page2").style.backgroundColor = document.getElementById("backgroundcolor").value; 
+            // Move text from input field in page 1 to presenting area in page 2   
+			document.getElementById("p2foretag").innerHTML = document.getElementById("foretag").value;
+			document.getElementById("p2fullName").innerHTML = document.getElementById("fornamn").value + " " + document.getElementById("efternamn").value;
+			document.getElementById("p2titel").innerHTML = document.getElementById("titel").value;
+			document.getElementById("p2phone").innerHTML = "Tfn: " + document.getElementById("telefon").value;
+			document.getElementById("p2epost").innerHTML = "E-post: " + document.getElementById("epost").value;
+			document.getElementById("page2").style.fontFamily = document.getElementById("typesnitt").value;
+			document.getElementById("page2").style.color = document.getElementById("textcolor").value;
+        });
+    
+        document.getElementById("byt2").addEventListener("click", function(){ //Hides and shows respective buttons when switching pages
+            document.getElementById("page1").style.display = "block";
+			document.getElementById("byt2").style.display = "none";
+            document.getElementById("page2").style.display = "none";
+        });
+		document.getElementById("reset").addEventListener("click", function(){ //Clears all input, even dropdown menus
+            document.getElementById("foretag").value = "";					   //Chose to clear instead of setting dropdown to a given default value
+			document.getElementById("efternamn").value = "";
+			document.getElementById("fornamn").value = "";
+			document.getElementById("titel").value = "";
+			document.getElementById("telefon").value = "";
+			document.getElementById("epost").value = "";
+			document.getElementById("backgroundcolor").value = "";
+			document.getElementById("textcolor").value = "";
+			document.getElementById("typesnitt").value = "";
+        });
+    
+    })
+    
+    </script>
+    
+    </body>
+    </html>
